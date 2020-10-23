@@ -5,7 +5,7 @@ class CategoryItem extends StatelessWidget {
 	final Color color;
 
 	CategoryItem(this.title, this.color);
-
+	@override
 	Widget build(context){
 		return Container(
 			padding: const EdgeInsets.all(15) ,
@@ -14,11 +14,12 @@ class CategoryItem extends StatelessWidget {
 				gradient: LinearGradient(
 					colors:[
 						color.withOpacity(0.7),
+						color,
 					],
 					begin: Alignment.topLeft,
 					end: Alignment.bottomRight,
 				),
-				borderRadius: BorderRadius.circular(15.0),
+				borderRadius: BorderRadius.circular(15),
 			),
 		);
 	}
