@@ -1,4 +1,4 @@
-# flutter_by_aldave
+# Meal App
 
 A new Flutter project.
 
