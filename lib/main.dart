@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(color: Color.fromRGBO(20,51,51,1),),
           bodyText2: TextStyle(color: Color.fromRGBO(20,51,51,1),),
           headline6: TextStyle(
-            fontSize: 24,
+            fontSize: 20,
             fontFamily: "RobotoCondensed",
             fontWeight: FontWeight.bold,
           ),
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/':(ctx) => CategoriesScreen(),
         CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(),
-        // MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
       },
       // onGenerateRoute: (settings){
       //   print(settings.arguments);
@@ -46,11 +46,11 @@ class MyApp extends StatelessWidget {
       //   );
       // },
       //separed functions just show you 
-      // onUnknownRoute:(settings){
-      //   return MaterialPageRoute(
-      //     builder: (ctx) => CategoriesScreen()
-      //   );
-      // },
+      onUnknownRoute:(settings){
+        return MaterialPageRoute(
+          builder: (ctx) => CategoriesScreen()
+        );
+      },
     );
   }
 }
