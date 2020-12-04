@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
             ),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
+                // ignore: deprecated_member_use
                 title: TextStyle(
                   fontFamily: "Quicksand",
                   fontSize: 20,
