@@ -8,7 +8,10 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MyShop',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          accentColor: Colors.deepOrange,
+          fontFamily: 'Lato'),
       home: ProductsOverviewScreen(),
     );
   }
