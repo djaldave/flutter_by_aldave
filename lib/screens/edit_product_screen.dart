@@ -43,6 +43,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _saveForm() {
+    final isValid = _form.currentState.validate();
+    if (!isValid) {
+      return;
+    }
     _form.currentState.save();
     print(_editedProduct.title);
     print(_editedProduct.price);
@@ -71,6 +75,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     _priceFocusNode,
                   );
                 },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please provide a value";
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   _editedProduct = Product(
                     id: null,
@@ -90,6 +100,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   FocusScope.of(context).requestFocus(
                     _descriptionFocusNode,
                   );
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please provide a value";
+                  }
+                  return null;
                 },
                 onSaved: (value) {
                   _editedProduct = Product(
@@ -114,6 +130,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     price: _editedProduct.price,
                     imageUrl: _editedProduct.imageUrl,
                   );
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please provide a value";
+                  }
+                  return null;
                 },
               ),
               Row(
@@ -155,6 +177,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           price: _editedProduct.price,
                           imageUrl: value,
                         );
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Please provide a value";
+                        }
+                        return null;
                       },
                     ),
                   ),
