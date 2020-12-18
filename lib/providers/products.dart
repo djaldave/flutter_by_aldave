@@ -66,6 +66,16 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
+  Future<void> fetchAdSetProducts() async{
+    const url =
+        "https://flutter-update-4e157-default-rtdb.firebaseio.com/products.json";
+    try{
+     final response =  await http.get(url);
+     print(json.decode(response.body));
+    }catch(error){
+      throw error;
+    }
+  }
   Future<void> addProduct(Product product) async {
     const url =
         "https://flutter-update-4e157-default-rtdb.firebaseio.com/products.json";

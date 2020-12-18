@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_by_aldave/providers/product.dart';
+import 'package:flutter_by_aldave/providers/products.dart';
 import 'package:flutter_by_aldave/widgets/app_drawer.dart';
 import 'cart_screen.dart';
 import '../widgets/products_grid.dart';
@@ -19,6 +21,24 @@ class ProductsOverviewScreen extends StatefulWidget {
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   bool _showOnlyFavorites = false;
+  bool _isInit = true;
+  @override
+  void initState() {
+    // Provider.of<Products>(context).fetchAdSetProducts(); won't work
+    // Future.delayed(Duration.zero).then((value){
+    //   Provider.of<Products>(context, listen: false).fetchAdSetProducts();
+    // });
+    super.initState();
+  }
+  //another way
+  @override
+  void didChangeDependencies() {
+    if(_isInit){
+      Provider.of<Products>(context).fetchAdSetProducts();
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     // final cart = Provider.of<Cart>(context);
