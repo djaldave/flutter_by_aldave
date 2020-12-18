@@ -66,7 +66,7 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<void> fetchAdSetProducts() async {
+  Future<void> fetchAddSetProducts() async {
     const url =
         "https://flutter-update-4e157-default-rtdb.firebaseio.com/products.json";
     try {
@@ -76,12 +76,12 @@ class Products with ChangeNotifier {
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(
           Product(
-            id: prodId,
-            title: prodData['title'],
-            description: prodData['description'],
-            price: prodData['price'],
-            imageUrl: prodData['imageUrl'],
-          ),
+              id: prodId,
+              title: prodData['title'],
+              description: prodData['description'],
+              price: prodData['price'],
+              imageUrl: prodData['imageUrl'],
+              isFavorite: prodData['isFavorite']),
         );
       });
       _items = loadedProducts;
