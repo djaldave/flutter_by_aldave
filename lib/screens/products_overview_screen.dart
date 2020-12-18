@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_by_aldave/providers/product.dart';
 import 'package:flutter_by_aldave/providers/products.dart';
 import 'package:flutter_by_aldave/widgets/app_drawer.dart';
-import 'cart_screen.dart';
-import '../widgets/products_grid.dart';
-import '../widgets/badge.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/cart.dart';
 import '../widgets/app_drawer.dart';
+import '../widgets/badge.dart';
+import '../widgets/products_grid.dart';
+import 'cart_screen.dart';
 
 enum FilterOptions {
   Favorites,
@@ -22,6 +22,7 @@ class ProductsOverviewScreen extends StatefulWidget {
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   bool _showOnlyFavorites = false;
   bool _isInit = true;
+  bool _isLoading = false;
   @override
   void initState() {
     // Provider.of<Products>(context).fetchAdSetProducts(); won't work
@@ -30,15 +31,22 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     // });
     super.initState();
   }
+
   //another way
   @override
   void didChangeDependencies() {
-    if(_isInit){
-      Provider.of<Products>(context).fetchAdSetProducts();
+    if (_isInit) {
+      _isLoading = true;
+      Provider.of<Products>(context).fetchAdSetProducts().then((value) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
     }
     _isInit = false;
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     // final cart = Provider.of<Cart>(context);
@@ -85,7 +93,11 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         ],
       ),
       drawer: AppDrawer(),
-      body: ProductsGrid(_showOnlyFavorites),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ProductsGrid(_showOnlyFavorites),
     );
   }
 }
