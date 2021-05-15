@@ -36,6 +36,10 @@ class MyApp extends StatelessWidget {
                 ),
               ),
         ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+        ),
       ),
     );
   }
