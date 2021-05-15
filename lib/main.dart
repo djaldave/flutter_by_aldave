@@ -80,18 +80,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
+        isScrollControlled: true,
         context: ctx,
         builder: (_) {
-          return GestureDetector(
+          return Container(
+            height: 300,
             child: NewTransaction(_addNewTransaction),
-            behavior: HitTestBehavior.opaque,
-            onTap: () {},
           );
         });
   }
-  void _deleteTransaction(String id){
-    setState((){
-      _userTransaction.removeWhere((tx)=>tx.id == id);
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransaction.removeWhere((tx) => tx.id == id);
     });
   }
 
